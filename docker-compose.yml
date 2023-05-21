@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+  
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    depends_on:
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+
+  postgres:
+    image: postgres:latest
+    container_name: db
+    ports:
+      - 5432:5432
+    volumes:
+      - /data/postgres:/data/postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
