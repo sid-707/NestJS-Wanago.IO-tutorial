@@ -6,11 +6,13 @@ services:
       - 3000:3000
     depends_on:
       - postgres
+    volumes:
+      - .:/app
   
   pgadmin:
     links:
       - postgres:postgres
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:7.1
     ports:
       - 8080:80
     volumes:
