@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service';
 import RequestWithUser from './interfaces/requestWithUser.interface';
-import { RegisterDto } from './dto/register.dto';
+import RegisterDto from './dto/register.dto';
 import { Response } from 'express';
 import JwtAuthenticationGuard from './jwt-authentication.guard';
 import LoginDto from './dto/login.dto';
